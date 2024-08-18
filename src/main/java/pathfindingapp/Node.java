@@ -28,28 +28,9 @@ public class Node {
         return this.color;
     }
 
-    public void setFDegree(int fDegree) {
-        this.fDegree = fDegree;
-    }
-
-    public int getFDegree() {
+    public int calculateFDegree() {
+        this.fDegree = this.gDegree + this.hDegree;
         return this.fDegree;
-    }
-
-    public void setGDegree(int gDegree) {
-        this.gDegree = gDegree;
-    }
-
-    public int getGDegree() {
-        return this.gDegree;
-    }
-
-    public void setHDegree(int hDegree) {
-        this.hDegree = hDegree;
-    }
-
-    public int getHDegree() {
-        return this.hDegree;
     }
 
     public int getHeight() {

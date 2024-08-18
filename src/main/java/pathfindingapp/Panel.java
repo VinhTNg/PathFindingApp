@@ -17,8 +17,8 @@ import java.awt.event.MouseEvent;
  */
 public class Panel extends JPanel implements MouseListener, MouseMotionListener, ActionListener {
     //variables to control the size of the nodes
-    private final int nodeWidth = 14;
-    private final int nodeHeight = 14;
+    public final int nodeWidth = 14;
+    public final int nodeHeight = 14;
     private final int width = 700;
     private final int height = 800;
     
@@ -65,8 +65,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
             for(int j = 0; j < 50; j++) {
                 Node node = new Node();
                 node.setColor(Color.WHITE);
-                node.setX(i * 14);
-                node.setY(j * 14 + 100);
+                node.setY(i * 14 + 100);
+                node.setX(j * 14);
                 nodes.add(node);
             }
         }
@@ -104,9 +104,9 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
                 int y = e.getY();
                 int collumn = (int) Math.floor(x / nodeWidth);
                 int row = (int) Math.floor((y - 100) / nodeHeight);
-                int target = collumn * 50 + row;
+                int target = collumn + row * 50;
         
-                nodes.get(target).setColor(Color.GREEN);
+                nodes.get(target).setColor(Color.GRAY);
                 location++;
                 if(location == 2) {
                     maxLocation = true;
@@ -118,9 +118,9 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
                 int y = e.getY();
                 int collumn = (int) Math.floor(x / nodeWidth);
                 int row = (int) Math.floor((y - 100) / nodeHeight);
-                int target = collumn * 50 + row;
+                int target = collumn + row * 50;
                 if(nodes.get(target).getColor() == Color.WHITE) {
-                    nodes.get(target).setColor(Color.RED);
+                    nodes.get(target).setColor(Color.BLACK);
                 }
                 repaint();
             }
@@ -140,14 +140,14 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
                 double y = e.getY();
                 int collumn = (int) Math.floor(x / nodeWidth);
                 int row = (int) Math.floor((y - 100) / nodeHeight);
-                int target = collumn * 50 + row;
+                int target = collumn + row * 50;
 
                 //TODO: Fix the bug where returning to the panel from the bottom causes the top nodes to be colored.
                 if(nodes.get(target).getColor() == Color.WHITE) {
                     if(e.getY() - nodes.get(target).getY() < 14) {
-                        nodes.get(target).setColor(Color.RED);
+                        nodes.get(target).setColor(Color.BLACK);
                     }
-                    nodes.get(target).setColor(Color.RED);
+                    nodes.get(target).setColor(Color.BLACK);
                 }
                 repaint();
             }
