@@ -12,10 +12,12 @@ public class PathFinding {
         this.nodes = nodes;
         openList = new ArrayList<Node>();
         openList.add(nodes.get(start));
+        aStarAlgorithm();
     }
 
     private ArrayList<Node> aStarAlgorithm() {
         for(int i = 0; i < nodes.size(); i++) {
+            nodes.get(i).gDegree = Integer.MAX_VALUE;
             nodes.get(i).calculateFDegree();
         }
         return path;
