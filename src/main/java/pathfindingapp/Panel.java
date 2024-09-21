@@ -21,6 +21,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
     public final int nodeHeight = 14;
     private final int width = 700;
     private final int height = 800;
+    private int startNode = -1;
+    private int endNode = -1;
     
     //variables to control states of the panel
     private boolean start = false;
@@ -60,7 +62,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
-        // Add 2500 nodes to the panel
+        // Add 2500 nodes to the panel from high to low
         for (int i = 0; i < 50; i++) {
             for(int j = 0; j < 50; j++) {
                 Node node = new Node();
@@ -105,7 +107,12 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
                 int collumn = (int) Math.floor(x / nodeWidth);
                 int row = (int) Math.floor((y - 100) / nodeHeight);
                 int target = collumn + row * 50;
-        
+                
+                if(startNode == -1) {
+                    startNode = target;
+                } else {
+                    endNode = target;
+                }
                 nodes.get(target).setColor(Color.GRAY);
                 location++;
                 if(location == 2) {
@@ -163,11 +170,18 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == startButton) {
             start = true;
+            pathfindingapp.PathFinding pathFinding = new pathfindingapp.PathFinding(nodes, startNode, endNode, 700);
+            for(Node node : pathFinding.path) {
+                node.setColor(Color.BLUE);
+                repaint();
+            }
         }
         if(e.getSource() == resetButton) {
             start = false;
             maxLocation = false;
             obstacle = false;
+            startNode = -1;
+            endNode = -1;
             location = 0;
             for(Node node : nodes) {
                 node.setColor(Color.WHITE);

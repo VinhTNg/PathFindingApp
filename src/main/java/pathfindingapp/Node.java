@@ -1,25 +1,24 @@
 package pathfindingapp;
 
-import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Objects;
 
-/**
- * Node class to store the color, fDegree, gDegree, and hDegree of a node to use in Grid.
- * @Author: Vinh Nguyen
- */
 public class Node {
-    
-    public int gDegree; // Cost from start node to current node
-    public int hDegree; // Heuristic cost from current node to goal node
-    public int fDegree; // Total cost (g + h)
+    public double gDegree; // Cost from start node to current node
+    public double hDegree; // Heuristic cost from current node to goal node
+    public double fDegree; // Total cost (g + h)
     public Node parent; // Parent node
     private Color color;
     private int x;
     private int y;
     private int width = 13;
     private int height = 13;
-    
-    
+
+    public Node() {
+        this.color = Color.WHITE; // Default color
+    }
+
     public void setColor(Color color) {
         this.color = color;
     }
@@ -28,7 +27,7 @@ public class Node {
         return this.color;
     }
 
-    public int calculateFDegree() {
+    public double calculateFDegree() {
         this.fDegree = this.gDegree + this.hDegree;
         return this.fDegree;
     }
@@ -60,5 +59,18 @@ public class Node {
     public void draw(Graphics g) {
         g.setColor(this.color);
         g.fillRect(x + 1, y + 1, width, height);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Node node = (Node) obj;
+        return x == node.x && y == node.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
