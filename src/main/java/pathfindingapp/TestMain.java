@@ -1,16 +1,15 @@
 package pathfindingapp;
 
-import java.util.ArrayList;
-
 public class TestMain {
-    Panel panel;
-    ArrayList<Integer> coor;
+    public Panel panel;
+    public PathFinding pathFinding;
 
     /**
      * Constructor for the TestMain class.
      */
     public TestMain() {
         panel = new Panel();
+        pathFinding = new PathFinding(panel.nodes, 0, 2499, 50);
     }
 
     public int findNode(int startX, int startY) {

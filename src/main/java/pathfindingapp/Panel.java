@@ -35,7 +35,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
     JButton resetButton = new JButton();
 
 
-    ArrayList<Node> nodes = new ArrayList<Node>();
+    public ArrayList<Node> nodes = new ArrayList<Node>();
     
     /**
      * Constructor for the Panel class.
@@ -170,7 +170,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener,
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == startButton) {
             start = true;
-            pathfindingapp.PathFinding pathFinding = new pathfindingapp.PathFinding(nodes, startNode, endNode, 700);
+            pathfindingapp.PathFinding pathFinding = new pathfindingapp.PathFinding(nodes, startNode, endNode, 50);
             for(Node node : pathFinding.path) {
                 node.setColor(Color.BLUE);
                 repaint();

@@ -60,17 +60,4 @@ public class Node {
         g.setColor(this.color);
         g.fillRect(x + 1, y + 1, width, height);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Node node = (Node) obj;
-        return x == node.x && y == node.y;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
 }
