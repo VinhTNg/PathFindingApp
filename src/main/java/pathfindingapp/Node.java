@@ -2,7 +2,6 @@ package pathfindingapp;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Objects;
 
 public class Node {
     public double gDegree; // Cost from start node to current node
